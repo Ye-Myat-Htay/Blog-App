@@ -28,7 +28,7 @@
                             <div class="mt2">
                                 <a href="{{ url("/articles/delete/$article->id") }}"
                                 class="btn btn-danger">Delete</a>
-                                <a href="" class="btn btn-warning">Edit</a>
+                                <a href="{{ url("/articles/edit/$article->id") }}" class="btn btn-warning">Edit</a>
                             </div>
                         @endcan
                     @endauth

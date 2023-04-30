@@ -71,9 +71,35 @@ class ArticleController extends Controller
         return back()->with("info", "Unauthorize to delete");
     }
 
-    public function update($id)
-    {
-        
+    public function edit($id) {
+        $article = Article::find($id);
+        $categories = Category::all();
+
+        return view('articles.edit', [
+            'article' => $article,
+            'categories' => $categories,
+        ]);
     }
 
+    public function update($id)
+    {
+        $validator = validator(request()->all(), [
+            "title" => "required",
+            "body" => "required",
+            "category_id" => "required"
+        ]);
+
+        if($validator->fails()) {
+            return back()->withErrors($validator);
+        }
+
+        $article = Article::find($id);
+        $article->title = request()->title;
+        $article->body = request()->body;
+        $article->category_id = request()->category_id;
+        $article->user_id = auth()->user()->id;
+        $article->save();
+
+        return redirect("/articles/detail/$article->id")->with("info", "An article updated");   
+    }
 }

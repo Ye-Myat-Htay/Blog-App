@@ -15,7 +15,7 @@
         <div class="mb-2">
             <label for="">Title</label>
             <input type="text"
-                class="form-control" name="title">
+                class="form-control" name="title" value="{{ $article->title }}">
         </div>
         <div class="mb-2">
             <label for="">Body</label>
@@ -37,7 +37,7 @@
                 @endforeach
             </select>
         </div>
-        <button class="btn btn-primary">Update</button>
+        <button class="btn btn-primary">Update Article</button>
     </form>
 </div>
 @endsection
